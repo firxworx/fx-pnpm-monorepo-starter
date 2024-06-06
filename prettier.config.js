@@ -25,8 +25,7 @@ export default {
     // 'prettier-plugin-astro',
 
     // prettier-plugin-tailwindcss must come last when using alongside other plugins (per its README)
-    // install this package and uncomment if using tailwindcss
-    // 'prettier-plugin-tailwindcss',
+    'prettier-plugin-tailwindcss',
   ],
   overrides: [
     // uncomment if using astro
