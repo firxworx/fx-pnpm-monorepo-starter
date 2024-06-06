@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    // always be explicit about strict mode
     "strict": true,
 
     "outDir": "dist",
@@ -19,10 +20,7 @@
 
     // generate types and their sourcemaps
     "declaration": true,
-    "declarationMap": true,
-
-    // linting
-    "strictFunctionTypes": true
+    "declarationMap": true
 
     // types may be required depending on package setup
     // "types": ["node", "vitest/globals"]
