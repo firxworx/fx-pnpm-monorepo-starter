@@ -7,11 +7,14 @@ import { defineWorkspace } from 'vitest/config'
  * @see https://vitest.dev/guide/workspace
  */
 export default defineWorkspace([
+  'apps/*',
   'packages/*',
+
+  // example of including specific test files --
   // 'packages/*/vitest.config.{e2e,unit}.ts',
 
   {
-    // if a global vite config is present you may wish to extend it...
+    // if a global vite config is present you may wish to extend it --
     // extends: './vite.config.js',
 
     test: {
