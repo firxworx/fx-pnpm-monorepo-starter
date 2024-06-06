@@ -2,18 +2,26 @@
 
 Embrace the joy of a fast and lightweight monorepo with [pnpm workspaces](https://pnpm.io/workspaces)!
 
-This repo is home to a starter/boilerplate for new projects that's free of extraneous tooling such as Nx, TurboRepo, Lerna, and others that add complexity to your development workflow. These premature optimizations are unnecessary for most projects and can create far more problems than they solve.
+This repo is a starter/boilerplate for new projects that's free from extraneous tooling such as Nx, TurboRepo, Lerna, and others that add complexity to your workflow. Such optimizations are premature and unnecessary for most projects and often they create more problems than they solve.
 
-This workspace is 100% ESM and comes with two example projects:
+This workspace is **100% ESM** and comes with two example projects to keep or delete:
 
-- `apps/demo` - example React + Vite app with react-router and tailwindcss that imports from the local package `packages/common`
+- `apps/demo` - example React app with react-router and tailwind powered by Vite
 - `packages/common` - example shared package that exports some utilities
 
-Thanks to `pnpm` this setup can easily handle several large-framework apps _and_ dozens of packages on a relatively modest developer laptop running the popular resource hog VSCode.
+Thanks to `pnpm` this setup can easily handle several large-framework apps _and_ dozens of packages on a relatively modest developer laptop running a high-resource-consuming editor like VSCode.
 
-The commands in `package.json` are intended for unix/linux environments. Windows users can use WSL2 or revise the commands accordingly.
+> [!NOTE]
+> The scripts in `package.json` are intended for unix/linux environments. Windows users can use WSL2 or must revise the commands.
 
 ## Goodies included in this repo
+
+- 🚀 [example projects](#example-projects)
+- 🏗️ [tsup](#tsup) for building packages
+- 🧪 [vitest](#vitest) for testing
+- 🔍 [eslint + prettier](#eslint--prettier) for linting and formatting
+- 🤝 [syncpack](#syncpack) for consistent package versions
+- 🍻 [well-commented config files](#configuration-files) with tips and examples
 
 ### Example projects
 
@@ -40,7 +48,7 @@ Note that pre-building packages can also help with large monorepos to help reduc
 
 You are welcome to delete the `build` script from the `@workspace/common`'s `package.json` if you won't use the feature.
 
-### Vitest
+### vitest
 
 Vitest is included and `pnpm test` will run the "test" target on all projects in the workspace that have one in their `package.json`.
 
@@ -92,7 +100,7 @@ This is important to ensure that all projects in the workspace are using the sam
 
 ## Getting Started
 
-### Introduction
+### First steps
 
 Set your own `name` in `package.json` along with `author` and `license` details.
 
@@ -202,14 +210,20 @@ Refer to the [syncpack docs](https://jamiemason.github.io/syncpack/) for more de
 
 ## Good to know
 
-A key feature of `pnpm` is that all `devDependencies` in the workspace root `package.json` are available to the entire workspace. Tools like `eslint`, `prettier`, `typescript`, etc. do not need to be installed in each package.
+> [!TIP]
+> A key feature of `pnpm` is that all `devDependencies` in the workspace root `package.json` are available to the entire workspace. Tools like `eslint`, `prettier`, `typescript`, etc. do not need to be installed in each package.
 
-> **TIP** If you are publishing packages to npm then its a good idea to also add all dependencies to the individual packages' `package.json` files so they are "self-contained" and published with a complete set of dependencies.
+> [!TIP]
+> If you are publishing packages to npm then its a good idea to also add all dependencies to the individual packages' `package.json` files so they are "self-contained" and published with a complete set of dependencies.
 
-> **TIP** `pnpm` uses symlinks to link packages in the workspace so if you have common dependencies between the workspace root and any package(s) they are only stored on disk once. With `pnpm` there is no performance penalty to listing the same dependency in multiple packages in the workspace.
+> [!TIP]
+> `pnpm` uses symlinks to link packages in the workspace so if you have common dependencies between the workspace root and any package(s) they are only stored on disk once. With `pnpm` there is no performance penalty to listing the same dependency in multiple packages in the workspace.
 
-> **TIP** When reading the docs or asking for help note that its common for individual apps and packages in a workspace to be referred to as _projects_ whereas the whole thing is the _workspace_.
+> [!TIP]
+> When reading the docs or asking for help note that its common for individual apps and packages in a workspace to be referred to as _projects_ whereas the whole thing is the _workspace_.
 
-> **TIP** Take care to avoid circular depenencies. Try to think of a linear dependency chain where each package depends on the next. 
+> [!TIP]
+> Take care to avoid circular depenencies. Try to think of a linear dependency chain where each package depends on the next. 
 
-> **TIP** Understand tree-shaking and how defining `sideEffects` in `package.json` can help bundlers like Vite and Rollup remove unused code from the final bundle.
+> [!TIP]
+> Understand tree-shaking and how defining `sideEffects` in `package.json` can help bundlers like Vite and Rollup remove unused code from the final bundle.
