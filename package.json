@@ -2,18 +2,22 @@
   "name": "fx-pnpm-monorepo-starter",
   "private": true,
   "type": "module",
-  "description": "pnpm workspace starter with ",
+  "description": "pnpm workspace (monorepo) starter for TypeScript with example React/Tailwind/Vite app and shared package. Includes vitest + eslint + prettier.",
   "license": "UNLICENSED",
   "keywords": [
+    "starter",
     "boilerplate",
     "typescript",
+    "pnpm",
+    "vite",
+    "react",
     "eslint",
     "prettier"
   ],
   "author": {
     "name": "Kevin Firko",
-    "url": "https://bitcurve.com",
-    "email": "kfirko@bitcurve.com"
+    "url": "https://firxworx.com",
+    "email": "hello@firxworx.com"
   },
   "repository": {
     "type": "git",

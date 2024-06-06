@@ -94,6 +94,8 @@ This is important to ensure that all projects in the workspace are using the sam
 
 ### Introduction
 
+Set your own `name` in `package.json` along with `author` and `license` details.
+
 Review `pnpm-workspace.yaml` to review the workspace configuration.
 
 The existence of this file tells `pnpm` that this repo is a _workspace_ or monorepo. It simply lists directories that contain _projects_ (apps or packages) that `pnpm` should manage as part of the shared workspace.
