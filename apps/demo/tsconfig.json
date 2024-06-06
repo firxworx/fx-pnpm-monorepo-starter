@@ -1,6 +1,7 @@
 {
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    // explicit strict mode
+    // always define explicit strict mode
     "strict": true,
 
     // compilation
@@ -24,10 +25,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    // linting
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    // disable lint rule to allow for common JSX props and type definition patterns
+    "exactOptionalPropertyTypes": false
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
