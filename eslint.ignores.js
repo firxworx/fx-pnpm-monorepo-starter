@@ -19,6 +19,11 @@ export default {
     // third-party modules in app public paths (minified vendor js can crash eslint)
     'apps/**/public/**',
 
+    // patterns related to test and coverage
+    '**/fixtures/**',
+    '**/coverage/**',
+    '**/__snapshots__/**',
+
     // popular frameworks
     '**/.vite/',
     '**/.svelte-kit/',

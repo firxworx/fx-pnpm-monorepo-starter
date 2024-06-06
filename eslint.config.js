@@ -8,14 +8,23 @@ import globals from 'globals'
 import configPrettier from 'eslint-config-prettier'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import eslintPluginEslintComments from 'eslint-plugin-eslint-comments'
+import eslintPluginReactRefresh from 'eslint-plugin-react-refresh'
+import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
+import eslintPluginJsxA11y from 'eslint-plugin-jsx-a11y'
 
-// @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigFile}
+import reactJsxRuntimeConfig from 'eslint-plugin-react/configs/jsx-runtime.js'
+import reactRecommendedConfig from 'eslint-plugin-react/configs/recommended.js'
+
+// helpers from this package fix pre-v9 plugin rules to enable v9 compatibility
+import { fixupPluginRules } from '@eslint/compat'
 
 /**
+ * eslint v9 configuration using the config helper function from `typescript-eslint`.
+ *
  * @see https://typescript-eslint.io/packages/typescript-eslint/
  * @see https://typescript-eslint.io/users/configs/#strict
  *
- * @todo plugin:react-hooks/recommended (when its v9+ compatible)
+ * @todo add plugin:react-hooks/recommended (when its v9+ compatible)
  * @todo add react-refresh and rules (refer to eslintrc.deprecated.cjs of react-core)
  */
 export default tseslint.config(
@@ -36,7 +45,7 @@ export default tseslint.config(
   // prettier
   eslintPluginPrettierRecommended,
 
-  // general configuration that customizes/overrides the recommended base configuration
+  // general configuration for javascript and typescript that customizes/overrides the defaults from the above configs
   {
     plugins: {
       '@typescript-eslint': tseslint.plugin,
@@ -62,20 +71,15 @@ export default tseslint.config(
     linterOptions: {
       reportUnusedDisableDirectives: 'warn',
     },
-    // settings: {
-    //   react: {
-    //     version: 'detect',
-    //   },
-    // },
     rules: {
       // disable `no-unused-vars` or else this rule may conflict with `@typescript-eslint/no-unused-vars`
-      // prevents `AssertionError [ERR_ASSERTION]: Node must be provided when reporting error if location is not provided`
+      // turning off will resolve `AssertionError [ERR_ASSERTION]` when combined with typescript-eslint
       'no-unused-vars': 'off',
 
       // require curly braces around all blocks to avoid recreating famous bugs and maintain code consistency
       curly: 'error',
 
-      // require evidence that you know what's up when you disable a lint rule and document for future reference
+      // require explanation for every disabled lint rule to document intent for reference
       'eslint-comments/require-description': 'error',
 
       // typescript is a fancy linter with a type system that's only as strong as its weakest link
@@ -156,14 +160,25 @@ export default tseslint.config(
     },
   },
 
+  // react configuration (comment this section out if not using react)
+  // the `*.ts` extension is included because react hooks are not necessarily `*.tsx` files
   {
     files: ['**/*.ts', '**/*.tsx'],
-    ignores: ['node_modules', 'dist'],
+    extends: [reactJsxRuntimeConfig],
+    ...reactRecommendedConfig,
     plugins: {
       '@typescript-eslint': tseslint.plugin,
       'eslint-comments': eslintPluginEslintComments,
+      'react-refresh': eslintPluginReactRefresh,
+
+      // @ts-expect-error -- upstream type issue (tseslint #9115) https://github.com/eslint/rewrite/issues/25
+      'jsx-a11y': fixupPluginRules(eslintPluginJsxA11y),
+
+      // @ts-expect-error -- upstream type issue (tseslint #9115) https://github.com/eslint/rewrite/issues/25
+      'react-hooks': fixupPluginRules(eslintPluginReactHooks),
     },
     languageOptions: {
+      ...reactRecommendedConfig.languageOptions,
       parser: tseslint.parser,
       parserOptions: {
         ecmaVersion: 2022,
@@ -172,6 +187,10 @@ export default tseslint.config(
           modules: true,
           jsx: true,
         },
+      },
+      globals: {
+        ...globals.serviceworker,
+        ...globals.browser,
       },
     },
     linterOptions: {
@@ -182,16 +201,30 @@ export default tseslint.config(
         version: 'detect',
       },
     },
+    // @ts-expect-error -- upstream type issue (tseslint #9115) https://github.com/eslint/rewrite/issues/25
     rules: {
+      ...eslintPluginJsxA11y.configs.recommended.rules,
+
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': ['warn'],
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'error',
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },
   },
 
   // disable type-aware linting on JS files
   {
     files: ['**/*.{js,mjs,cjs}'],
-    ...tseslint.configs.disableTypeChecked,
+    extends: [tseslint.configs.disableTypeChecked],
+    rules: {
+      // disable other type-aware rules
+      'deprecation/deprecation': 'off',
+      '@typescript-eslint/internal/no-poorly-typed-ts-props': 'off',
+
+      // disable rules that don't apply to JS code
+      '@typescript-eslint/explicit-function-return-type': 'off',
+    },
   },
 
   // use more relaxed rules that allow naughty things that may be required for tests
