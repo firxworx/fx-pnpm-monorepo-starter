@@ -24,14 +24,9 @@ const config = {
       dependencies: ['$LOCAL'],
       dependencyTypes: ['peer'],
       policy: 'sameRange',
-
-      // leave off library peerDeps
-      // exclude: ['react', 'react-dom'],
     },
-
-    // ignore peer dependencies for React
     {
-      label: 'React',
+      label: 'Ignore peer dependencies for React',
       dependencies: ['react', 'react-dom'],
       dependencyTypes: ['peer'],
       packages: ['**'],
