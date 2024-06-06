@@ -133,11 +133,12 @@ You can also simply copy-and-paste one of the examples to create a new project. 
 
 Always remember to run `pnpm install` after making changes to the workspace configuration or adding/removing projects.
 
-> Specific to this boilerplate: if you delete the example package but keep the app make sure you remove the dependency from the app's `package.json` and refactor the code to remove references to the deleted package.
-
 When adding a package from within the workspace as a dependency to another package its important to understand the `workspace:` protocol. Note the example in the demo app's `package.json` for how `@workspace/common` is added.
 
 Refer to the [pnpm workspace docs](https://pnpm.io/workspaces#workspace-protocol-workspace) for details on the `workspace:` protocol.
+
+> [!TIP]
+> If you delete the example package but keep the example app remember to remove the dependency from the app's `package.json` and refactor the code to remove references to it.
 
 ## Managing a workspace with `pnpm`
 
@@ -158,7 +159,8 @@ Add the `--recursive` (`-r`) option to target all projects in the workspace.
 
 When running recursive commands the `--stream` option is a common addition to stream the output of all projects and interleave it in the terminal.
 
-To target the workspace root `package.json` use the `-w` option. The following example installs a dev dependency (`-D` or `--save-dev`) for the workspace (`-w`):
+To target the workspace root `package.json` use the `-w` option.
+The following example installs a dev dependency (`-D` or `--save-dev`) for the workspace (`-w`):
 
 ```sh
 pnpm add -wD eslint-plugin-react
