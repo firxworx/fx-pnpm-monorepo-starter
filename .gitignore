@@ -1,0 +1,129 @@
+# dependencies
+node_modules/
+jspm_packages/
+
+# build output
+dist/
+dist-ssr/
+out/
+build/
+dist-ssr
+cdk.out
+*.tgz
+build/Release
+
+# any .local files
+*.local
+
+# environment
+.env
+.env.*
+!.env.common
+!.env.development
+!.env.sample
+!.env.example
+!.env.*.sample
+!.env.*.example
+/nx-cloud.env
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# common secrets
+*.pem
+*.key
+*.csr
+*.crt
+*.cert
+*.certificate
+*.credentials.json
+*.p12
+*.pfx
+
+# diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# common development tooling
+/.pnp
+.pnp.js
+
+# coverage and related tools such as instanbul
+/coverage
+.nyc_output
+lib-cov
+*.lcov
+
+# output of rollup-plugin-visualizer
+stats.html
+
+# runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# coverage tools
+lib-cov
+coverage
+*.lcov
+.nyc_output
+
+# development tooling
+.grunt
+bower_components
+.lock-wscript
+
+# typescript (including legacy)
+typings/
+*.tsbuildinfo
+
+# cache directories
+.cache
+.npm
+.eslintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.node_repl_history
+.yarn-integrity
+
+# frameworks
+.astro/
+.dynamodb/
+.cdk.staging
+.next
+.nuxt
+.vuepress/dist
+.serverless/
+.turbo/
+.fusebox/
+.tern-port
+.vercel
+
+# code editors excluding vscode
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

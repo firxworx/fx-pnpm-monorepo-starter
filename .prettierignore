@@ -1,0 +1,13 @@
+# gitignore files
+*.log*
+node_modules
+.idea
+.vscode
+
+# ignore changeset auto-generated files
+.changeset
+
+# explicit ignores
+.*rc
+.*ignore
+pnpm-lock.yaml

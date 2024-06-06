@@ -1,0 +1,42 @@
+# dependencies
+node_modules/
+
+# env files
+.env
+.env.*
+
+# framework credentials
+.nx-cloud.env
+
+# common secrets
+*.pem
+*.key
+*.csr
+*.crt
+*.cert
+*.certificate
+*.credentials.json
+*.p12
+*.pfx
+
+# log output
+*.rest
+*.log
+
+# tooling config files
+.gitignore
+.eslintrc
+eslint.*
+prettier.config.*
+syncpack.config.*
+docker-compose.yml
+
+# misc files
+CHANGELOG.md
+CONTRIBUTING.md
+LICENSE
+LICENSE.md
+README.md
+*README*.md
+*NOTES*.md
+*DOCS*.md

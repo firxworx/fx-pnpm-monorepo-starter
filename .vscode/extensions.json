@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig"
+
+    // recommended for astro
+    // "astro-build.astro-vscode",
+
+    // suggested for blogs that use mdx
+    // "unifiedjs.vscode-mdx",
+  ],
+  "unwantedRecommendations": []
+}
